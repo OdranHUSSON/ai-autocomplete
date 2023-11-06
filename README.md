@@ -1,83 +1,65 @@
-# AI Toolkit
+---
 
-AI Toolkit is a Next.js application with a MySQL database, packaged in Docker containers.
+# AI Autocomplete Forms with Language Models
 
-## Requirements
+Welcome to our AI-powered Autocomplete Form project. This repository contains a novel UI component that leverages language models 
+to provide an autocomplete feature for forms based on natural language input. It's a step towards making form interactions 
+smarter and more intuitive.
 
-- Docker
-- Docker Compose
-- Make (Optional for convenience)
+## How It Works
 
-## Getting Started
+The project integrates the capabilities of large language models, specifically OpenAI's models, to interpret and convert plain 
+text into structured data that pre-fills a form. Here's the process:
 
-To get started with AI Toolkit, follow these steps:
+1. **Text Input:** The user inputs descriptive text into an interface.
+2. **API Call:** The text is sent to a backend service via an API.
+3. **Language Model Processing:** The backend service utilizes a language model to parse the text and extract structured data 
+according to a predefined schema.
+4. **Autocomplete:** The form fields are automatically completed with the structured data, streamlining the form-filling process.
 
-### Build and Run the Application
+### Technical Stack:
 
-To build and run the application in containers, execute:
+- **Next.js**: For the frontend and API routes.
+- **Chakra UI**: For the user interface components.
+- **React Hook Form**: For managing form state.
+- **Zod**: For schema validation and TypeScript type generation.
+- **Langchain**: For interacting with OpenAI models.
 
-```
-make build
-```
+### Repository Structure:
 
-Or, you can use Docker Compose directly:
+- `models/`: Contains Zod schemas for form data validation and typing.
+- `components/`: React components including the form and autocomplete container.
+- `pages/api/autocomplete/`: The API endpoint for the autocomplete feature.
+- `server/`: Backend logic for communicating with OpenAI's API.
 
-```
-docker-compose up -d --build
-```
+## Get Started
 
-### Stopping the Application
+To get started with this project, clone the repository, install the dependencies, and follow the instructions to set up your 
+environment variables, particularly the API key for OpenAI.
 
-To stop the application, run:
-
-```
-make stop
-```
-
-Or with Docker Compose:
-
-```
-docker-compose down
-```
-
-### Database Migrations
-
-To update or create new migrations, run:
-
-```
-make migrate-dev
+```bash
+git clone https://github.com/OdranHUSSON/ai-autocomplete.git
+cd ai-autocomplete
+npm install
+# setup your .env with OPEN_AI_API_KEY
+npm run dev
 ```
 
-This command will create a migration file named "init" in the `/prisma/migrations` directory. The migration file contains the raw SQL that needs to be executed against the database. Running this command will apply the changes defined in your Prisma schema to the database, creating or updating the necessary tables. It is important to run this command whenever you make changes to your models in the schema.prisma file.
+## Read More
 
-After running the command, you will have a `/prisma/migrations` directory that contains all the migration files. You can safely ignore this directory, but make sure to commit it to your repository.
+For an in-depth explanation of the concept, design decisions, and a discussion on the future enhancements planned for this 
+project, check out our article on Medium:
 
-@TODO add doc about other prisma commands
+🔗 [Enhancing User Experience with Autocomplete Forms and Language 
+Models](https://medium.com/@ohusson/enhancing-user-experience-with-autocomplete-forms-and-language-models-ed8e1dc85b47)
 
-### Access Prisma Studio
+## Contributing
 
-To access Prisma Studio for database management, run:
+Contributions, issues, and feature requests are welcome! Feel free to check [issues 
+page](https://github.com/OdranHUSSON/ai-autocomplete/issues). Make sure to follow the `CONTRIBUTING.md` guidelines when proposing 
+changes.
 
-```
-make prisma-studio
-```
+## Stay Updated
 
-### Access the Application
-
-The Next.js application is available at `http://localhost:3000`.
-
-The Prisma Studio is available at `http://localhost:5555` when running.
-
-## Environmental Variables
-
-Ensure you have the following environment variables set up in your `.env` file or in the `environment` section of your `docker-compose.yml`:
-
-- `DATABASE_URL`: The database connection string.
-
-## Notes
-
-- Adjust the Docker Compose file's `environment` settings for the `ai-toolkit-app` service if you are using a custom `.env` file.
-- The `Makefile` assumes you have a Unix-like environment to use `make` commands; on Windows, you might need to use `nmake` or run the Docker Compose commands directly.
-- The Prisma commands in the `Makefile` assume that your `node` container has access to Prisma CLI. Ensure your Next.js project has Prisma installed as a dependency.
-- Before running migrations, you will need to have your Prisma schema set up correctly, pointing to the Dockerized MySQL service.
+To stay up to date with the latest improvements and updates, watch this repository and keep an eye on the release section.
 
